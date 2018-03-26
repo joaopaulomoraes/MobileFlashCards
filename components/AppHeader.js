@@ -14,14 +14,18 @@ const AppHeader = props => {
   return (
     <Container>
       <Header>
-        <Left/>
+        <Left />
         <Body>
           <Title>{title}</Title>
         </Body>
-        <Right/>
+        <Right />
       </Header>
     </Container>
   )
+}
+
+AppHeader.defaultProps = {
+  title: 'FlashCard App'
 }
 
 AppHeader.propTypes = {
