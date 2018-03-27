@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
-  Container,
   Header,
   Left,
   Body,
@@ -12,20 +11,18 @@ import {
 const AppHeader = props => {
   const { title } = props
   return (
-    <Container>
-      <Header>
-        <Left />
-        <Body>
-          <Title>{title}</Title>
-        </Body>
-        <Right />
-      </Header>
-    </Container>
+    <Header>
+      <Left />
+      <Body>
+        <Title>{title}</Title>
+      </Body>
+      <Right />
+    </Header>
   )
 }
 
 AppHeader.defaultProps = {
-  title: 'FlashCard App'
+  title: 'FlashCards App'
 }
 
 AppHeader.propTypes = {
