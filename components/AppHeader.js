@@ -22,7 +22,7 @@ const AppHeader = props => {
 }
 
 AppHeader.defaultProps = {
-  title: 'FlashCards App'
+  title: 'FlashCards'
 }
 
 AppHeader.propTypes = {
