@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import Expo from 'expo'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import reducer from './reducers'
 import { Container, Text } from 'native-base'
 
 import StackFooter from './components/StackFooter'
@@ -21,9 +24,11 @@ class App extends Component {
       return <Expo.AppLoading />
     }
     return (
-      <Container>
-        <StackFooter />
-      </Container>
+      <Provider store={createStore(reducer)}>
+        <Container>
+          <StackFooter />
+        </Container>
+      </Provider>
     )
   }
 }
