@@ -2,7 +2,9 @@ import {
   GET_DECKS
 } from '../actions'
 
-const decks = (state = {}, action) => {
+import { deckData } from '../api'
+
+const decks = (state = deckData, action) => {
   switch (action.type) {
     case GET_DECKS:
       return {
