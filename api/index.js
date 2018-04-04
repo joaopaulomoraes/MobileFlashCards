@@ -11,6 +11,10 @@ export const deckData = {
           question: 'What is React?',
           answer: 'A library for managing user interfaces'
         },
+        {
+          question: 'Where do you make Ajax requests in React?',
+          answer: 'The componentDidMount lifecycle event'
+        }
       ],
       thumbnail: {
         default: require('../assets/react.png'),
@@ -24,10 +28,6 @@ export const deckData = {
         {
           question: 'What is Redux?',
           answer: 'Redux is a predictable state container for JavaScript apps'
-        },
-        {
-          question: 'Where do you make Ajax requests in React?',
-          answer: 'The componentDidMount lifecycle event'
         }
       ],
       thumbnail: {
