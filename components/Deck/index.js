@@ -1,31 +1,37 @@
-import React from 'react'
-import { StyleSheet } from 'react-native'
-import { Col, Row, Grid } from 'react-native-easy-grid'
+import React, { Component } from 'react'
+import {
+  StyleSheet,
+  Dimensions
+} from 'react-native'
+import {
+  Col,
+  Row,
+  Grid
+} from 'react-native-easy-grid'
 import {
   Content,
   Card,
   CardItem,
-  Header,
-  Left,
-  Right,
   Body,
   Thumbnail,
   Button,
   Icon,
   Text,
-  Title,
-  H1,
-  H3,
-  Container
+  H1
 } from 'native-base'
 
-import FlipCard from 'react-native-flip-card'
-import AppHeader from '../AppHeader'
+const { width, height } = Dimensions.get('window')
 
 const styles = StyleSheet.create({
+  content: {
+    padding: width / 12
+  },
   deck: {
+    flex: 1,
+    justifyContent: 'space-around',
     alignItems: 'center',
-    marginBottom: 12,
+    height: height / 2,
+    marginBottom: width / 12,
     shadowColor: "black",
     shadowOffset: {
       width: 0,
@@ -33,150 +39,106 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.16,
     shadowRadius: 6,
-    elevation: 12
+    elevation: 12,
+    borderRadius: 12
+  },
+  body: {
+    alignItems: 'center'
+  },
+  h1: {
+    marginTop: width / 6,
+    textAlign: 'center'
+  },
+  thumbnail: {
+    width: width / 4,
+    height: width / 4
   }
 })
 
-export const Deck = ({ navigation, ...props }) => {
+export const DeckFront = ({ deck, deckCover }) => {
+  const {
+    title,
+    questions,
+    thumbnail,
+    backgroundColor
+  } = deck
   return (
     <Grid>
       <Row>
         <Col>
-          <Card style={styles.deck}>
-            <CardItem>
-              <Body style={{ alignItems: 'center' }}>
-                <Thumbnail source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/640px-React-icon.svg.png' }} />
-                <H1>{'{title}'}</H1>
+        {deckCover ?
+          <Card style={[
+            styles.deck,
+            {backgroundColor: backgroundColor ? backgroundColor : '#778F9A'}
+          ]}>
+            <CardItem style={{backgroundColor: 'transparent'}}>
+              <Body style={styles.body}>
+                <Thumbnail
+                  square
+                  source={thumbnail ? thumbnail.white : require('../../assets/decks-white.png')}
+                  style={styles.thumbnail}
+                />
+                <H1 style={[
+                  styles.h1, {
+                    fontSize: 32,
+                    color: 'white'
+                  }
+                ]}>
+                  {title}
+                </H1>
               </Body>
             </CardItem>
-            <CardItem footer>
-              <Text>{'{number}'} cards</Text>
+            <CardItem
+              footer
+              style={{backgroundColor: 'transparent'}}
+            >
+              <Text style={{color: 'white'}}>
+                {questions.length} {questions.length === 1 ? 'card' : 'cards'}
+              </Text>
             </CardItem>
           </Card>
+        : <Card style={[styles.deck]}>
+            <CardItem>
+              <Body style={styles.body}>
+                <Thumbnail
+                  square
+                  source={thumbnail ? thumbnail.default : require('../../assets/decks.png')}
+                  large
+                />
+                <H1 style={styles.h1}>{questions[0].question}</H1>
+              </Body>
+            </CardItem>
+          </Card>
+        }
         </Col>
       </Row>
     </Grid>
   )
 }
 
-const deckData = {
-  React: {
-    title: 'React',
-    questions: [
-      {
-        question: 'What is React?',
-        answer: 'A library for managing user interfaces'
-      },
-      {
-        question: 'Where do you make Ajax requests in React?',
-        answer: 'The componentDidMount lifecycle event'
-      }
-    ]
-  },
-  JavaScript: {
-    title: 'JavaScript',
-    questions: [
-      {
-        question: 'What is a closure?',
-        answer: 'The combination of a function and the lexical environment within which that function was declared.'
-      }
-    ]
-  }
-}
-
-export const DeckList = ({ navigation, ...props }) => {
+export const DeckBack = ({ deck }) => {
+  const { questions, thumbnail } = deck
   return (
-    <Container>
-      <AppHeader title="Decks" />
-      <Content padder>
-        {[1, 2, 3].map(deck =>
-          <Deck
-            key={deck}
-            {...props}
-          />
-        )}
-      </Content>
-    </Container>
-  )
-}
-
-export const DeckCard = ({ navigation }) => {
-  return (
-    <Container>
-      <Header>
-        <Left>
-          <Button transparent onPress={() => navigation.goBack()}>
-            <Icon name="arrow-back" />
-          </Button>
-        </Left>
-        <Body>
-          <Title>Deck</Title>
-        </Body>
-        <Right />
-      </Header>
-      <Content padder>
-        <Grid>
-          <Row>
-            <Col size={1}>
-              <FlipCard 
-                style={{ borderWidth: 0 }}
-                friction={12}
-                perspective={1000}
-                flipHorizontal={true}
-                flipVertical={false}
-                alignWidth={true}
-                alignHeight={true}
-              >
-                <Grid>
-                  <Row>
-                    <Col size={1}>
-                      <Card style={styles.deck}>
-                        <CardItem>
-                          <Body style={{ alignItems: 'center' }}>
-                            <Thumbnail source={{ uri: 'https://devstickers.com/assets/img/pro/h8ci.png' }} />
-                            <H1>What is React?</H1>
-                          </Body>
-                        </CardItem>
-                        <CardItem footer>
-                          <Text>{2} cards</Text>
-                        </CardItem>
-                      </Card>
-                    </Col>
-                  </Row>
-                </Grid>
-                <Card style={styles.deck}>
-                  <CardItem>
-                    <Body>
-                      <H3>A library for managing user interfaces</H3>
-                    </Body>
-                  </CardItem>
-                </Card>
-              </FlipCard>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Button
-                block
-                light
-                onPress={() => alert('AddCard')}
-              >
-                <Text>Add Card</Text>
-              </Button>
-            </Col>
-            <Col size={.1} />
-            <Col>
-              <Button
-                block
-                primary
-                onPress={() => navigation.navigate('Quiz')}
-              >
-                <Text>Start Quiz</Text>
-              </Button>
-            </Col>
-          </Row>
-        </Grid>
-      </Content>
-    </Container>
+    <Grid>
+      <Row>
+        <Col>
+          <Card style={styles.deck}>
+            <CardItem header>
+              <Thumbnail
+                square
+                small
+                source={thumbnail ? thumbnail.default : require('../../assets/decks.png')}
+              />
+            </CardItem>
+            <CardItem>
+              <Body style={styles.body}>
+                <Text style={{textAlign: 'center'}}>{questions[0].answer || 0 }</Text>
+              </Body>
+            </CardItem>
+            <CardItem footer />
+          </Card>
+        </Col>
+      </Row>
+    </Grid>
   )
 }
