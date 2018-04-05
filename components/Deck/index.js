@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-around',
     alignItems: 'center',
-    height: height / 2,
+    height: height / 1.6,
     marginBottom: width / 12,
     shadowColor: "black",
     shadowOffset: {
