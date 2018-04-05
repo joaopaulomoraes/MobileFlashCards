@@ -7,6 +7,8 @@ import {
 import {
   Container,
   View,
+  Icon,
+  Text,
   DeckSwiper
 } from 'native-base'
 
@@ -18,6 +20,11 @@ const { width, height } = Dimensions.get('window')
 const styles = StyleSheet.create({
   content: {
     padding: width / 12
+  },
+  description: {
+    flex: 1,
+    alignItems: 'center',
+    marginTop: height / 1.6
   }
 })
 
@@ -38,6 +45,10 @@ class DeckList extends Component {
                 />
               }
             />
+          </View>
+          <View style={styles.description}>
+            <Icon name="swap" />
+            <Text>Move to change the decks</Text>
           </View>
       </Container>
     )
