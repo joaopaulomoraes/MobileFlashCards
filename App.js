@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import Expo from 'expo'
-import { createStore } from 'redux'
+import store from './store'
 import { Provider } from 'react-redux'
-import reducer from './reducers'
 import { Container, Text } from 'native-base'
 
-import StackFooter from './components/StackFooter'
+import StackNavigation from './components/StackNavigation'
 
 class App extends Component {
   state = {
@@ -24,9 +23,9 @@ class App extends Component {
       return <Expo.AppLoading />
     }
     return (
-      <Provider store={createStore(reducer)}>
+      <Provider store={store}>
         <Container>
-          <StackFooter />
+          <StackNavigation />
         </Container>
       </Provider>
     )
