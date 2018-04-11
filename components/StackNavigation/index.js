@@ -13,8 +13,10 @@ import {
 } from 'native-base'
 
 import DeckList from '../Deck/DeckList'
+import DeckItem from '../Deck/DeckItem'
 import DeckCard from '../Deck/DeckCard'
 import AddDeck from '../Deck/AddDeck'
+import AddDeckCard from '../Deck/AddDeckCard'
 
 export const StackFooter = TabNavigator(
   {
@@ -46,7 +48,7 @@ export const StackFooter = TabNavigator(
                 ios="ios-add-circle"
                 android="md-add-circle"
               />
-              <Text>New Deck</Text>
+              <Text>Add Deck</Text>
             </Button>
           </FooterTab>
         </Footer>
@@ -60,8 +62,10 @@ const StackNavigation = StackNavigator(
     Home: {
       screen: StackFooter,
     },
+    DeckItem,
     DeckCard,
-    AddDeck
+    AddDeck,
+    AddDeckCard
   },
   {
     headerMode: 'none',
