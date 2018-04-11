@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import {
   StyleSheet,
-  Dimensions
+  Dimensions,
+  TouchableOpacity
 } from 'react-native'
 import {
   Col,
@@ -17,7 +18,8 @@ import {
   Button,
   Icon,
   Text,
-  H1
+  H1,
+  View
 } from 'native-base'
 
 const { width, height } = Dimensions.get('window')
@@ -42,6 +44,15 @@ const styles = StyleSheet.create({
     elevation: 12,
     borderRadius: 12
   },
+  deckCard: {
+    borderWidth: 2,
+    borderColor: 'white',
+    borderRadius: 6,
+    width: width / 1.4,
+    height: height / 1.8,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   body: {
     alignItems: 'center'
   },
@@ -55,7 +66,7 @@ const styles = StyleSheet.create({
   }
 })
 
-export const DeckFront = ({ deck, deckCover }) => {
+export const DeckFront = ({ deck, showAsDeckCard, deckCover, navigation }) => {
   const {
     title,
     questions,
@@ -71,31 +82,35 @@ export const DeckFront = ({ deck, deckCover }) => {
             styles.deck,
             {backgroundColor: backgroundColor ? backgroundColor : '#778F9A'}
           ]}>
-            <CardItem style={{backgroundColor: 'transparent'}}>
-              <Body style={styles.body}>
-                <Thumbnail
-                  square
-                  source={thumbnail ? thumbnail.white : require('../../assets/decks-white.png')}
-                  style={styles.thumbnail}
-                />
-                <H1 style={[
-                  styles.h1, {
-                    fontSize: 32,
-                    color: 'white'
-                  }
-                ]}>
-                  {title}
-                </H1>
-              </Body>
-            </CardItem>
-            <CardItem
-              footer
-              style={{backgroundColor: 'transparent'}}
-            >
-              <Text style={{color: 'white'}}>
-                {questions.length} {questions.length === 1 ? 'card' : 'cards'}
-              </Text>
-            </CardItem>
+            <TouchableOpacity onPress={() => navigation.navigate('DeckItem', { title })}>
+              <View style={styles.deckCard}>
+                <CardItem style={{backgroundColor: 'transparent'}}>
+                  <Body style={styles.body}>
+                    <Thumbnail
+                      square
+                      source={thumbnail ? thumbnail.white : require('../../assets/decks-white.png')}
+                      style={styles.thumbnail}
+                    />
+                    <H1 style={[
+                      styles.h1, {
+                        fontSize: 32,
+                        color: 'white'
+                      }
+                    ]}>
+                      {title}
+                    </H1>
+                  </Body>
+                </CardItem>
+                <CardItem
+                  footer
+                  style={{backgroundColor: 'transparent'}}
+                >
+                  <Text style={{color: 'white'}}>
+                    {questions.length} {questions.length === 1 ? 'card' : 'cards'}
+                  </Text>
+                </CardItem>
+              </View>
+            </TouchableOpacity>
           </Card>
         : <Card style={[styles.deck]}>
             <CardItem>
@@ -105,8 +120,16 @@ export const DeckFront = ({ deck, deckCover }) => {
                   source={thumbnail ? thumbnail.default : require('../../assets/decks.png')}
                   large
                 />
-                <H1 style={styles.h1}>{questions[0].question}</H1>
+                <H1 style={styles.h1}>{showAsDeckCard ? title : questions[0].question}</H1>
               </Body>
+            </CardItem>
+            <CardItem
+              footer
+              style={{backgroundColor: 'transparent'}}
+            >
+              <Text style={{color: showAsDeckCard ? 'black' : 'white'}}>
+                {showAsDeckCard ? questions.length : 0 } {showAsDeckCard ? questions.length === 1 ? 'card' : 'cards' : null}
+              </Text>
             </CardItem>
           </Card>
         }
