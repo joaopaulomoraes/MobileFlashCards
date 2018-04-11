@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
   StyleSheet,
-  Dimensions 
+  Dimensions
 } from 'react-native'
 import {
   Container,
@@ -14,8 +14,11 @@ import {
 
 import AppHeader from '../AppHeader'
 import { DeckFront } from '../Deck'
+import NotFound from '../NotFound'
 
 const { width, height } = Dimensions.get('window')
+
+import { getDecks } from '../../actions'
 
 const styles = StyleSheet.create({
   content: {
@@ -29,19 +32,25 @@ const styles = StyleSheet.create({
 })
 
 class DeckList extends Component {
+  componentDidMount () {
+    this.props.dispatch(getDecks())
+  }
   render() {
-    const { allDecks } = this.props
+    const { decks, navigation } = this.props
     return (
       <Container>
         <AppHeader title="Decks" />
+        {decks !== undefined ?
+        <View>
           <View style={styles.content}>
             <DeckSwiper
               ref={(c) => this._deckSwiper = c}
-              dataSource={Object.values(allDecks)}
+              dataSource={Object.values(decks)}
               renderItem={deck =>
                 <DeckFront
                   deckCover
                   deck={deck}
+                  navigation={navigation}
                 />
               }
             />
@@ -50,13 +59,15 @@ class DeckList extends Component {
             <Icon name="swap" />
             <Text>Move to change the decks</Text>
           </View>
+        </View>
+        : <NotFound />}
       </Container>
     )
   }
 }
 
-const mapStateToProps = state => {
-  return state
-}
+const mapStateToProps = ({ decks }) => ({
+  decks
+})
 
 export default connect(mapStateToProps)(DeckList)
