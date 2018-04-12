@@ -46,7 +46,6 @@ class DeckItem extends Component {
     } = this.props
 
     getDeck(params.title)
-    console.warn( this.props )
   }
   render() {
     const {
