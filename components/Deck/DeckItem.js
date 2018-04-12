@@ -89,7 +89,7 @@ class DeckItem extends Component {
                 <Col>
                   <Button
                     block
-                    onPress={() => navigation.navigate('AddDeckCard')}
+                    onPress={() => navigation.navigate('AddDeckCard', { title: params.title })}
                   >
                     <Text>Add Card</Text>
                   </Button>
