@@ -49,6 +49,12 @@ class AddDeck extends Component {
       'Hey! 👋',
       'The deck needs a name!'
     )
+
+    this.props.navigation.navigate(
+      'DeckItem', {
+        title: deckTitle 
+      }
+    )
   }
   render() {
     const { navigation } = this.props
