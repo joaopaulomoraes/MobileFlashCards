@@ -24,7 +24,7 @@ const NotFound = ({ message }) => {
   return (
     <View style={styles.content}>
       <Icon name="sad" />
-      <Text>No more decks here!</Text>
+      <Text>No decks here!</Text>
     </View>
   )
 }
