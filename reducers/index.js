@@ -1,12 +1,41 @@
 import {
-  GET_DECKS
+  GET_DECKS,
+  GET_DECK,
+  ADD_DECK,
+  DELETE_DECK_STORAGE,
+  ADD_CARD_TO_DECK
 } from '../actions'
 
-import { deckData } from '../api'
-
-const decks = (state = deckData, action) => {
+const decks = (state = {}, action) => {
+  const { decks, deck } = action
   switch (action.type) {
     case GET_DECKS:
+      return {
+        ...state,
+        decks: {
+          ...decks
+        }
+      }
+    
+    case GET_DECK:
+      return {
+        ...state,
+        decks: {
+          ...deck
+        }
+      }
+
+    case ADD_DECK:
+      return {
+        ...state
+      }
+
+    case ADD_CARD_TO_DECK:
+      return {
+        ...sate
+      }
+    
+    case DELETE_DECK_STORAGE:
       return {
         ...state
       }
