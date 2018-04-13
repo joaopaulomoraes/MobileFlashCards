@@ -22,6 +22,10 @@ import {
   Button,
   Icon
 } from 'native-base'
+import {
+  clearLocalNotification,
+  setLocalNotification
+} from '../../utils/LocalNotifications'
 import { NavigationActions } from 'react-navigation'
 import { DeckFront } from '../Deck'
 import { getDeck } from '../../actions'
@@ -97,8 +101,12 @@ class DeckItem extends Component {
                 <Col size={.1} />
                 <Col>
                   <Button
-                    block                   
-                    onPress={() => navigation.navigate('Quiz', { title: params.title })}
+                    block
+                    onPress={() => (
+                      navigation.navigate('Quiz', { title: params.title }),
+                      clearLocalNotification().then(() => setLocalNotification())
+                    )}
+                    disabled={!Object.values(decks)[0].questions.length ? true : false}
                   >
                     <Text>Start Quiz</Text>
                   </Button>
