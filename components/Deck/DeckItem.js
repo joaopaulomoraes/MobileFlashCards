@@ -98,7 +98,7 @@ class DeckItem extends Component {
                 <Col>
                   <Button
                     block                   
-                    onPress={() => navigation.navigate('Quiz')}
+                    onPress={() => navigation.navigate('Quiz', { title: params.title })}
                   >
                     <Text>Start Quiz</Text>
                   </Button>
