@@ -193,10 +193,12 @@ class DeckCard extends Component {
                     flipVertical={false}
                   >
                     <DeckFront
+                      isFlipped
                       question={question}
                       deck={Object.values(decks)[0]}
                     />
                     <DeckBack
+                      isFlipped
                       question={question}
                       deck={Object.values(decks)[0]}
                     />
