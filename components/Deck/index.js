@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   }
 })
 
-export const DeckFront = ({ deck, showAsDeckCard, deckCover, navigation, question }) => {
+export const DeckFront = ({ deck, showAsDeckCard, deckCover, navigation, question, isFlipped }) => {
   const {
     title,
     questions,
@@ -120,16 +120,22 @@ export const DeckFront = ({ deck, showAsDeckCard, deckCover, navigation, questio
                   source={thumbnail ? thumbnail.default : require('../../assets/decks.png')}
                   large
                 />
-                <H1 style={styles.h1}>{showAsDeckCard ? title : questions[question].question}</H1>
+                <H1 style={styles.h1}>{showAsDeckCard ? title : questions[question || 0].question}</H1>
               </Body>
             </CardItem>
             <CardItem
               footer
               style={{backgroundColor: 'transparent'}}
             >
+            {isFlipped ?
+              <Text style={{color: 'black'}}>
+                👆 touch to see the answer
+              </Text>
+            :
               <Text style={{color: showAsDeckCard ? 'black' : 'white'}}>
                 {showAsDeckCard ? questions.length : 0 } {showAsDeckCard ? questions.length === 1 ? 'card' : 'cards' : null}
               </Text>
+            }
             </CardItem>
           </Card>
         }
@@ -139,7 +145,7 @@ export const DeckFront = ({ deck, showAsDeckCard, deckCover, navigation, questio
   )
 }
 
-export const DeckBack = ({ deck, question }) => {
+export const DeckBack = ({ deck, question, isFlipped }) => {
   const { questions, thumbnail } = deck
   return (
     <Grid>
@@ -155,10 +161,16 @@ export const DeckBack = ({ deck, question }) => {
             </CardItem>
             <CardItem>
               <Body style={styles.body}>
-                <Text style={{textAlign: 'center'}}>{questions[question].answer || 0 }</Text>
+                <Text style={{textAlign: 'center'}}>{questions[question || 0].answer || 0 }</Text>
               </Body>
             </CardItem>
-            <CardItem footer />
+            <CardItem footer>
+            {isFlipped ?
+              <Text style={{color: 'black'}}>
+                👆 Touch to see the question
+              </Text>
+            : null}
+            </CardItem>
           </Card>
         </Col>
       </Row>
