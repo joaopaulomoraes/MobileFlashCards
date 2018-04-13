@@ -14,7 +14,7 @@ import {
 
 import DeckList from '../Deck/DeckList'
 import DeckItem from '../Deck/DeckItem'
-import DeckCard from '../Deck/DeckCard'
+import Quiz from '../Deck/Quiz'
 import AddDeck from '../Deck/AddDeck'
 import AddDeckCard from '../Deck/AddDeckCard'
 
@@ -63,9 +63,9 @@ const StackNavigation = StackNavigator(
       screen: StackFooter,
     },
     DeckItem,
-    DeckCard,
     AddDeck,
-    AddDeckCard
+    AddDeckCard,
+    Quiz
   },
   {
     headerMode: 'none',
