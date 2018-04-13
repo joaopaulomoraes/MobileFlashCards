@@ -32,7 +32,7 @@ const decks = (state = {}, action) => {
 
     case ADD_CARD_TO_DECK:
       return {
-        ...sate
+        ...state
       }
     
     case DELETE_DECK_STORAGE:
