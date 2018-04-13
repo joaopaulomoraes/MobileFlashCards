@@ -18,9 +18,12 @@ class App extends Component {
       Ionicons: require("native-base/Fonts/Ionicons.ttf")
     })
     this.setState({ isReady: true })
+  }
 
+  componentDidMount () {
     setLocalNotification()
   }
+
   render() {
     if (!this.state.isReady) {
       return <Expo.AppLoading />
