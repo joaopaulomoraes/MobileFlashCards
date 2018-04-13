@@ -3,6 +3,7 @@ import Expo from 'expo'
 import store from './store'
 import { Provider } from 'react-redux'
 import { Container, Text } from 'native-base'
+import { setLocalNotification } from './utils/LocalNotifications'
 
 import StackNavigation from './components/StackNavigation'
 
@@ -17,6 +18,8 @@ class App extends Component {
       Ionicons: require("native-base/Fonts/Ionicons.ttf")
     })
     this.setState({ isReady: true })
+
+    setLocalNotification()
   }
   render() {
     if (!this.state.isReady) {
