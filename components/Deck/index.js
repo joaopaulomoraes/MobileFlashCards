@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   }
 })
 
-export const DeckFront = ({ deck, showAsDeckCard, deckCover, navigation }) => {
+export const DeckFront = ({ deck, showAsDeckCard, deckCover, navigation, question }) => {
   const {
     title,
     questions,
@@ -120,7 +120,7 @@ export const DeckFront = ({ deck, showAsDeckCard, deckCover, navigation }) => {
                   source={thumbnail ? thumbnail.default : require('../../assets/decks.png')}
                   large
                 />
-                <H1 style={styles.h1}>{showAsDeckCard ? title : questions[0].question}</H1>
+                <H1 style={styles.h1}>{showAsDeckCard ? title : questions[question].question}</H1>
               </Body>
             </CardItem>
             <CardItem
@@ -139,7 +139,7 @@ export const DeckFront = ({ deck, showAsDeckCard, deckCover, navigation }) => {
   )
 }
 
-export const DeckBack = ({ deck }) => {
+export const DeckBack = ({ deck, question }) => {
   const { questions, thumbnail } = deck
   return (
     <Grid>
@@ -155,7 +155,7 @@ export const DeckBack = ({ deck }) => {
             </CardItem>
             <CardItem>
               <Body style={styles.body}>
-                <Text style={{textAlign: 'center'}}>{questions[0].answer || 0 }</Text>
+                <Text style={{textAlign: 'center'}}>{questions[question].answer || 0 }</Text>
               </Body>
             </CardItem>
             <CardItem footer />
