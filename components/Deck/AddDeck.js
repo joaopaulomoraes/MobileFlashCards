@@ -22,7 +22,6 @@ import {
   Alert,
   Dimensions
 } from 'react-native'
-import { NavigationActions } from 'react-navigation'
 
 import { addDeck } from '../../actions'
 
@@ -44,16 +43,16 @@ class AddDeck extends Component {
   addDeck = () => {
     const { deckTitle } = this.state
     deckTitle !== ''
-    ? this.props.addDeck( deckTitle )
+    ? (
+      this.props.addDeck( deckTitle ),
+      this.props.navigation.navigate(
+        'DeckItem', {
+          title: deckTitle
+        }
+      ))
     : Alert.alert(
       'Hey! 👋',
       'The deck needs a name!'
-    )
-
-    this.props.navigation.navigate(
-      'DeckItem', {
-        title: deckTitle 
-      }
     )
   }
   render() {
