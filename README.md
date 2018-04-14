@@ -1,4 +1,3 @@
-
 # Mobile FlashCards
 
 A mobile application that allows users to study a collection of flashcards.
@@ -19,6 +18,7 @@ Access the project directory.
 
 Install dependencies and serve with hot reload at exp://localhost:19000 (exp://YOUR_IP:19001).
 ```bash
+> yarn install
 > yarn start
 ```
 
