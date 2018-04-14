@@ -1,5 +1,20 @@
 {
   "expo": {
-    "sdkVersion": "25.0.0"
+    "sdkVersion": "25.0.0",
+    "orientation": "portrait",
+    "name": "Mobile FlashCards",
+    "description": "A mobile application that allows users to study a collection of flashcards.",
+    "slug": "mobile-flashcards",
+    "version": "1.0.0",
+    "icon": "https://i.imgur.com/xVWiw5e.png",
+    "notification": {
+      "icon": "https://i.imgur.com/v3y6Hd2.png"
+    },
+    "ios": {
+     "bundleIdentifier": "org.mobileflashcards.exp"
+    },
+    "android": {
+     "package": "org.mobileflashcards.exp"
+    }
   }
 }
