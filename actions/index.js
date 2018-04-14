@@ -1,9 +1,8 @@
 export const GET_DECKS = 'GET_DECKS'
 export const GET_DECK = 'GET_DECK'
 export const ADD_DECK = 'ADD_DECK'
-export const ADD_CARD_TO_DECK = 'ADD_DECK'
+export const ADD_CARD_TO_DECK = 'ADD_CARD_TO_DECK'
 export const DELETE_DECK_STORAGE = 'DELETE_DECK_STORAGE'
-export const ADD_DECK_CARD = 'ADD_DECK_CARD'
 
 import * as flashCardsAPI from '../api'
 
@@ -47,7 +46,7 @@ export const addDeck = title => {
  */
 export const addCardToDeck = (title, object) => {
   return dispatch => flashCardsAPI.addCardToDeck(title, object).then(deckCard =>
-    dispatch({ type: ADD_DECK, deckCard })
+    dispatch({ type: ADD_CARD_TO_DECK, deckCard, title })
   )
 }
 
