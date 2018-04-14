@@ -7,7 +7,12 @@ import {
 } from '../actions'
 
 const decks = (state = {}, action) => {
-  const { decks, deck } = action
+  const {
+    decks,
+    deck,
+    title,
+    deckCard
+  } = action
   switch (action.type) {
     case GET_DECKS:
       return {
@@ -32,7 +37,11 @@ const decks = (state = {}, action) => {
 
     case ADD_CARD_TO_DECK:
       return {
-        ...state
+        ...state,
+        decks: {
+          ...deckCard,
+          title: 'Deck hacked!'
+        }
       }
     
     case DELETE_DECK_STORAGE:
