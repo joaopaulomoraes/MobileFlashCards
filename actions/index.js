@@ -46,7 +46,7 @@ export const addDeck = title => {
  */
 export const addCardToDeck = (title, object) => {
   return dispatch => flashCardsAPI.addCardToDeck(title, object).then(deckCard =>
-    dispatch({ type: ADD_CARD_TO_DECK, deckCard, title })
+    dispatch({ type: ADD_CARD_TO_DECK, deckCard })
   )
 }
 

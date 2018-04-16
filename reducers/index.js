@@ -10,7 +10,6 @@ const decks = (state = {}, action) => {
   const {
     decks,
     deck,
-    title,
     deckCard
   } = action
   switch (action.type) {
@@ -39,8 +38,7 @@ const decks = (state = {}, action) => {
       return {
         ...state,
         decks: {
-          ...deckCard,
-          title: 'Deck hacked!'
+          ...deckCard
         }
       }
     
