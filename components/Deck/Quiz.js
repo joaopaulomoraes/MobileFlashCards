@@ -49,7 +49,12 @@ export const QuizScore = props => {
   const {
     score,
     navigation,
-    resetQuiz
+    resetQuiz,
+    navigation: {
+      state: {
+        params
+      }
+    }
   } = props
 
   return (
@@ -93,9 +98,9 @@ export const QuizScore = props => {
         <Col>
           <Button
             block
-            onPress={() => navigation.navigate('Home')}
+            onPress={() => navigation.navigate('DeckItem', { title: params.title })}
           >
-            <Text>All Decks</Text>
+            <Text>Back to Deck</Text>
           </Button>
         </Col>
       </Row>
