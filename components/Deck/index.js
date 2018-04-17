@@ -120,7 +120,7 @@ export const DeckFront = ({ deck, showAsDeckCard, deckCover, navigation, questio
                   source={thumbnail ? thumbnail.default : require('../../assets/decks.png')}
                   large
                 />
-                <H1 style={styles.h1}>{showAsDeckCard ? title : questions[question || 0].question}</H1>
+                <H1 style={styles.h1}>{showAsDeckCard ? title : questions[question !== undefined ? question : 0].question}</H1>
               </Body>
             </CardItem>
             <CardItem
@@ -161,7 +161,7 @@ export const DeckBack = ({ deck, question, isFlipped }) => {
             </CardItem>
             <CardItem>
               <Body style={styles.body}>
-                <Text style={{textAlign: 'center'}}>{questions[question || 0].answer || 0 }</Text>
+                <Text style={{textAlign: 'center'}}>{questions[question !== undefined ? question : 0].answer || 0}</Text>
               </Body>
             </CardItem>
             <CardItem footer>
