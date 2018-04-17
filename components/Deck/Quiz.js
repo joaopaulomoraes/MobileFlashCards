@@ -20,12 +20,10 @@ import {
   Text,
   Title,
   Button,
-  Icon,
-  DeckSwiper
+  Icon
 } from 'native-base'
-import { NavigationActions } from 'react-navigation'
+import QuizScore from '../Deck/QuizScore'
 import FlipCard from 'react-native-flip-card'
-import AppHeader from '../AppHeader'
 import {
   DeckFront,
   DeckBack
@@ -38,77 +36,10 @@ const { width, height } = Dimensions.get('window')
 const styles = StyleSheet.create({
   content: {
     padding: width / 12
-  },
-  score: {
-    flex: 1,
-    alignItems: 'center'
   }
 })
 
-export const QuizScore = props => {
-  const {
-    score,
-    navigation,
-    resetQuiz,
-    navigation: {
-      state: {
-        params
-      }
-    }
-  } = props
-
-  return (
-    <Grid style={{
-      flex: 1,
-      flexDirection: 'column',
-      justifyContent: 'center'
-    }}>
-      <Row>
-        <View style={styles.score}>
-          <Text style={{
-            fontSize: 68,
-            marginBottom: 32
-          }}>
-            {score > 0 ? '🎉' : '😕'}
-          </Text>
-          <Text style={{
-            fontSize: 28
-          }}>
-            {score > 0 ? 'Congratulations!' : 'Oh no!'}
-          </Text>
-          <Text>Your Score is {score} of 100</Text>
-          <Text style={{
-            fontSize: 32,
-            marginTop: 32
-          }}>
-            {score === 100 ? '🏆' : score > 60 ? '🥇🥇🥇' : score > 40 ? '🥈🥈🥈' : score > 20 ? '🥉🥉🥉' : ''}
-          </Text>
-        </View>
-      </Row>
-      <Row style={{marginTop: 128}}>
-        <Col>
-          <Button
-            block
-            onPress={() => resetQuiz()}
-          >
-            <Text>Restart</Text>
-          </Button>
-        </Col>
-        <Col size={.1} />
-        <Col>
-          <Button
-            block
-            onPress={() => navigation.navigate('DeckItem', { title: params.title })}
-          >
-            <Text>Back to Deck</Text>
-          </Button>
-        </Col>
-      </Row>
-    </Grid>
-  )
-}
-
-class DeckCard extends Component {
+class Quiz extends Component {
   state = {
     question: 0,
     correct: 0
@@ -250,4 +181,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DeckCard)
+)(Quiz)
