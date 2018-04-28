@@ -22,7 +22,7 @@ Access the project directory.
 
 ```
 
-Install dependencies and serve with hot reload at exp://localhost:19000 (exp://YOUR_IP:19001).
+Install dependencies and serve with hot reload at exp://localhost:19000 (exp://YOUR_IP:19000).
 
 ```bash
 
